@@ -5,12 +5,13 @@ class UsersController < ApplicationController
 
   def create
     user = User.create(user_params)
-    flash[:success] = 'User created!'
-    session[:user_id] = user.id #logs the new user in automatically
+    flash[:success] = 'Thank you for signing up!'
+    session[:user_id] = user.id #logs the newly registered user in automatically
     redirect_to root_path
   end
 
-  def show
+  def profile
+    @user = User.find(params[:id])
   end
 
   private

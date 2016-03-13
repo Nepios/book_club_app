@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
   if @user
     session[:user_id] = @user.id
-    flash[:success] = "Welcome back to README!"
+    flash[:success] = "Welcome back to ReadMe!"
     redirect_to root_path
   else
     flash[:danger] = "The email or password that you entered is invalid. Please enter a valid email and password to login."

@@ -2,13 +2,13 @@
   <h1 class="profile-centered"><%= @user.name %></h1>
   <p class="lead profile-centered"><%= @user.bio %></p>
 
-<% if @user.id == @current_user.id %>
 <center><%= cl_image_tag(@user.profilePic,
       :width => 200, :height => 200,
       :crop => :fill, :gravity => :face)
       %>
       <br>
       <br>
+<% if @user.id == @current_user.id %>
  <%= link_to 'Upload Profile Photo', '#upload-pic', class: 'btn btn-primary', data: {:toggle => 'modal'} %>
  <%= link_to 'Edit Profile', '#edit-profile', class: 'btn btn-warning', data: {:toggle => 'modal'} %> 
 <%= link_to 'Delete Account', '#confirm-delete', class: 'btn btn-danger', data: {:toggle => 'modal'} %>

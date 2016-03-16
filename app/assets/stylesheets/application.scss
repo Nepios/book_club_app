@@ -32,6 +32,7 @@ $btn-danger-color: white;
 $btn-danger-bg: #A92159;
 $btn-success-color: white;
 $btn-success-bg: #7EC2AA;
+$font-family-sans-serif: "Droid Sans";
 
 
 @import "bootstrap-sprockets";
@@ -41,6 +42,7 @@ $btn-success-bg: #7EC2AA;
   overflow: hidden;
 }*/
 
+
 ul.books {
   text-align: center;
 }
@@ -48,6 +50,12 @@ li.listobooks {
   display: inline-block;
   margin-top: 12px;
 }
+
+h1 {
+  font-family: "Abril Fatface";
+  
+}
+
 .author {
   font-size: 8px;
 }

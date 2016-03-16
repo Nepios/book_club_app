@@ -1,5 +1,6 @@
-<h1>Books</h1>
+
 <div class = "container">
+<h1>Books</h1>
 <% @responses["items"].each do |response| %>
   <% if response["volumeInfo"].key?("imageLinks") %>
     <p><a href="/books/<%= response["id"] %>"><img src="<%= response["volumeInfo"]["imageLinks"]["thumbnail"]%>"></a></p>

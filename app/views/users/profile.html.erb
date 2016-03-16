@@ -2,15 +2,19 @@
   <h1 class="profile-centered"><%= @user.name %></h1>
   <p class="lead profile-centered"><%= @user.bio %></p>
 
+<% if @user.id == @current_user.id %>
 <center><%= cl_image_tag(@user.profilePic,
       :width => 200, :height => 200,
       :crop => :fill, :gravity => :face)
-      %><br>
+      %>
       <br>
- <%= link_to 'Upload Profile Photo', '#upload-pic', class: 'btn btn-primary', data: {:toggle => 'modal'} %> 
+      <br>
+ <%= link_to 'Upload Profile Photo', '#upload-pic', class: 'btn btn-primary', data: {:toggle => 'modal'} %>
+ <%= link_to 'Edit Profile', '#edit-profile', class: 'btn btn-warning', data: {:toggle => 'modal'} %> 
+<%= link_to 'Delete Account', '#confirm-delete', class: 'btn btn-danger', data: {:toggle => 'modal'} %>
 </center>
+<% end %>
 <br>
-
   <div class="well">
     <h3>
       <% if @user.id == @current_user.id %>
@@ -21,7 +25,7 @@
       <% end %>
     </h3>
       <% @user.clubs.each do |c| %>
-        <p><a href="/clubs/<%= c.id %>"><%= c.name %></a></p>
+        <p class="lead"><a href="/clubs/<%= c.id %>"><%= c.name %></a></p>
       <% end %>
   </div>
   <div class="text-center">
@@ -36,22 +40,30 @@
         Favorite Books
       <% end %>
     </h3>
-      <% @books.each do |userbook| %>
-        <% @allbooks.each do |book| %>
-          <% if userbook.book_id == book.id && userbook.category == 2 %>
-            <div>
-              <a href="/books/<%= book.isbn%>"><img src ="<%=book.image%>"></a>
-              <p><a href="/books/<%= book.isbn%>"><%= book.title %></a></p>
-              <p>By: <%=book.author%></p>
-              <%= form_tag(bookdelete_path, method: "delete") do %>
-                <%= hidden_field_tag(:book_id, book.id) %>
-                <%= submit_tag("Delete") %>
+    <div class="row-fluid">
+      <div class="span12">
+        <div style="overflow:hidden;width:90%;">
+          <div style="width:1000px;">
+              <% @books.each do |userbook| %>
+                <% @allbooks.each do |book| %>
+                  <% if userbook.book_id == book.id && userbook.category == 2 %>
+                    <div class="bookuserinfo">
+                       <a href="/books/<%= book.isbn%>"><img src ="<%=book.image%>"></a>
+                      <p><a href="/books/<%= book.isbn%>"><%= book.title %></a></p>
+                      <p>By: <%=book.author%></p>
+                      <%= form_tag(bookdelete_path, method: "delete") do %>
+                      <%= hidden_field_tag(:book_id, book.id) %>
+                      <%= submit_tag("Remove Book") %>
+                      <% end %>
+                    </div>
               <% end %>
-            </div>
+            <% end %>
           <% end %>
-        <% end %>
-      <% end %>
+        </div>
+      </div>        
+    </div>
   </div>
+</div>
 
   <div class="well">
     <h3>
@@ -62,21 +74,29 @@
         To-Read List
       <% end %>
     </h3>
-      <% @books.each do |userbook| %>
-        <% @allbooks.each do |book| %>
-          <% if userbook.book_id == book.id && userbook.category == 0 %>
-            <div>
-              <a href="/books/<%= book.isbn%>"><img src ="<%=book.image%>"></a>
-              <p><a href="/books/<%= book.isbn%>"><%= book.title %></a></p>
-              <p>By: <%=book.author%></p>
-              <%= form_tag(bookdelete_path, method: "delete") do %>
-                <%= hidden_field_tag(:book_id, book.id) %>
-                <%= submit_tag("Delete") %>
+    <div class="row-fluid">
+      <div class="span12">
+        <div style="overflow:hidden;width:90%;">
+          <div style="width:1000px;">
+              <% @books.each do |userbook| %>
+                <% @allbooks.each do |book| %>
+                  <% if userbook.book_id == book.id && userbook.category == 0 %>
+                    <div class="bookuserinfo">
+                       <a href="/books/<%= book.isbn%>"><img src ="<%=book.image%>"></a>
+                      <p><a href="/books/<%= book.isbn%>"><%= book.title %></a></p>
+                      <p>By: <%=book.author%></p>
+                      <%= form_tag(bookdelete_path, method: "delete") do %>
+                      <%= hidden_field_tag(:book_id, book.id) %>
+                      <%= submit_tag("Remove Book") %>
+                      <% end %>
+                    </div>
               <% end %>
-            </div>
+            <% end %>
           <% end %>
-        <% end %>
-      <% end %>
+        </div>
+      </div>        
+    </div>
+  </div>
   </div>
 
   <div class="well">
@@ -88,21 +108,29 @@
         Finished Books
       <% end %>
     </h3>
-    <% @books.each do |userbook| %>
-        <% @allbooks.each do |book| %>
-          <% if userbook.book_id == book.id && userbook.category == 1 %>
-            <div>
-              <a href="/books/<%= book.isbn%>"><img src ="<%=book.image%>"></a>
-              <p>By: <%=book.author%></p>
-              <%= form_tag(bookdelete_path, method: "delete") do %>
-                <%= hidden_field_tag(:book_id, book.id) %>
-                <%= submit_tag("Delete") %>
+    <div class="row-fluid">
+      <div class="span12">
+        <div style="overflow:hidden;width:90%;">
+          <div style="width:1000px;">
+              <% @books.each do |userbook| %>
+                <% @allbooks.each do |book| %>
+                  <% if userbook.book_id == book.id && userbook.category == 1 %>
+                    <div class="bookuserinfo">
+                       <a href="/books/<%= book.isbn%>"><img src ="<%=book.image%>"></a>
+                      <p><a href="/books/<%= book.isbn%>"><%= book.title %></a></p>
+                      <p>By: <%=book.author%></p>
+                      <%= form_tag(bookdelete_path, method: "delete") do %>
+                      <%= hidden_field_tag(:book_id, book.id) %>
+                      <%= submit_tag("Remove Book") %>
+                      <% end %>
+                    </div>
               <% end %>
-
-            </div>
+            <% end %>
           <% end %>
-        <% end %>
-      <% end %>
+        </div>
+      </div>        
+    </div>
+  </div>
   </div>
 
 
@@ -147,12 +175,4 @@
       </div>
     </div>
   </div>
-
-  <center>
-  <% if @user.id == @current_user.id %>
-  <%= link_to 'Edit Profile', '#edit-profile', class: 'btn btn-warning', data: {:toggle => 'modal'} %>
-  <%= link_to 'Delete Account', '#confirm-delete', class: 'btn btn-danger', data: {:toggle => 'modal'} %>
-  <% end %> 
-  </center>
-  <br>
 </div>

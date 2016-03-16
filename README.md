@@ -34,4 +34,5 @@ Wireframes, user stories, and ERD can be viewed [here](https://drive.google.com/
 * Search results in horizontal list.
 * Add replies to comments
 * Add book to bookclub that you're a member of but not admin
+* Calendar option to read on schedule
 

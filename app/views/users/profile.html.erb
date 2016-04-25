@@ -2,7 +2,7 @@
   <h1 class="profile-centered"><%= @user.name %></h1>
   <p class="lead profile-centered"><%= @user.bio %></p>
 
-<center><%= cl_image_tag(@user.profilePic,
+<div class="profile-centered"><%= cl_image_tag(@user.profilePic,
       :width => 200, :height => 200,
       :crop => :fill, :gravity => :face)
       %>
@@ -12,7 +12,7 @@
  <%= link_to 'Upload Profile Photo', '#upload-pic', class: 'btn btn-primary', data: {:toggle => 'modal'} %>
  <%= link_to 'Edit Profile', '#edit-profile', class: 'btn btn-warning', data: {:toggle => 'modal'} %> 
 <%= link_to 'Delete Account', '#confirm-delete', class: 'btn btn-danger', data: {:toggle => 'modal'} %>
-</center>
+</div>
 <% end %>
 <br>
   <div class="well">
@@ -51,9 +51,11 @@
                        <a href="/books/<%= book.isbn%>"><img src ="<%=book.image%>"></a>
                       <p><a href="/books/<%= book.isbn%>"><%= book.title %></a></p>
                       <p>By: <%=book.author%></p>
-                      <%= form_tag(bookdelete_path, method: "delete") do %>
-                      <%= hidden_field_tag(:book_id, book.id) %>
-                      <%= submit_tag("Remove Book") %>
+                      <% if @user.id == @current_user.id %>
+                        <%= form_tag(bookdelete_path, method: "delete") do %>
+                        <%= hidden_field_tag(:book_id, book.id) %>
+                        <%= submit_tag("Remove Book") %>
+                        <% end %>
                       <% end %>
                     </div>
               <% end %>
@@ -85,10 +87,12 @@
                        <a href="/books/<%= book.isbn%>"><img src ="<%=book.image%>"></a>
                       <p><a href="/books/<%= book.isbn%>"><%= book.title %></a></p>
                       <p>By: <%=book.author%></p>
-                      <%= form_tag(bookdelete_path, method: "delete") do %>
-                      <%= hidden_field_tag(:book_id, book.id) %>
-                      <%= submit_tag("Remove Book") %>
-                      <% end %>
+                      <% if @user.id == @current_user.id %>
+                        <%= form_tag(bookdelete_path, method: "delete") do %>
+                        <%= hidden_field_tag(:book_id, book.id) %>
+                        <%= submit_tag("Remove Book") %>
+                        <% end %>
+                      <% end%>
                     </div>
               <% end %>
             <% end %>
@@ -119,9 +123,11 @@
                        <a href="/books/<%= book.isbn%>"><img src ="<%=book.image%>"></a>
                       <p><a href="/books/<%= book.isbn%>"><%= book.title %></a></p>
                       <p>By: <%=book.author%></p>
-                      <%= form_tag(bookdelete_path, method: "delete") do %>
-                      <%= hidden_field_tag(:book_id, book.id) %>
-                      <%= submit_tag("Remove Book") %>
+                      <% if @user.id == @current_user.id %>
+                        <%= form_tag(bookdelete_path, method: "delete") do %>
+                        <%= hidden_field_tag(:book_id, book.id) %>
+                        <%= submit_tag("Remove Book") %>
+                        <% end %>
                       <% end %>
                     </div>
               <% end %>
